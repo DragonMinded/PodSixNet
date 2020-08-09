@@ -28,7 +28,6 @@ class Server(asyncore.dispatcher):
         except TypeError:
             print('warning: server accept() threw EWOULDBLOCK')
             return
-        print("connection")
         self.channels.append(self.channelClass(conn, addr, self, self._map))
         self.channels[-1].Send({"action": "connected"})
         if hasattr(self, "Connected"):
